@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import Screen1 from '../source/TwitterAuth';
 import HomePage from '../source/HomePage';
+import VideoPlayer from '../source/VideoPlayer';
 // import Screen3 from '../Screen3';
 
 const Routes = createStackNavigator(
@@ -16,6 +17,13 @@ const Routes = createStackNavigator(
             }
         },HomePageScreen: {
             screen: HomePage,
+            navigationOptions: {
+                gesturesEnabled: false,
+                header: null,
+                title: null
+            }
+        },VideoPlayerScreen: {
+            screen: VideoPlayer,
             navigationOptions: {
                 gesturesEnabled: false,
                 header: null,

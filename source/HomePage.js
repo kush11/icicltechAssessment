@@ -8,13 +8,13 @@ import VideoCard from './VideoCard';
 const Data=[
     {
         id:'1',
-        videoUrl:'1',
+        videoUrl:'https://vjs.zencdn.net/v/oceans.mp4',
         name:'Demo',
         thumbNail:'https://tru-vue.com/wp-content/uploads/2015/11/video-icon.jpg'
     },
     {
         id:'2',
-        videoUrl:'2',
+        videoUrl:'https://youtu.be/gSMvDA88E-Q?list=PLB97yPrFwo5gxB5SuNWzH73t2Su65KN2f',
         name:'Demo1',
         thumbNail:'https://tru-vue.com/wp-content/uploads/2015/11/video-icon.jpg'
     },
@@ -38,9 +38,14 @@ const Data=[
     }
 ]
 export default class HomePage extends Component {
-    state={
-        userData:{}
+    constructor(props){
+        super(props)
+        this.state={
+            userData:{}
+        }    
+        console.log('this.props.navigation.navigate',this.props.navigation.navigate)
     }    
+    
     static contextType = UserContext;
 
     componentDidMount(){
@@ -52,7 +57,7 @@ export default class HomePage extends Component {
             this.setState({userData:dd})
         }) 
     }
-    renderItem = ({item}) => (
+    renderItem = ({item}) => (        
         <View style={{
             flex:1,
         height:110, width:'100%', 
@@ -60,7 +65,7 @@ export default class HomePage extends Component {
         alignItems:'center'
         // alignSelf:'center'
         }}>
-        <VideoCard image={item.thumbNail} name={item.name} videoUrl={item.videoUrl}/>        
+        <VideoCard navigation={this.props.navigation} image={item.thumbNail} name={item.name} videoUrl={item.videoUrl}/>        
         </View>
     )
 

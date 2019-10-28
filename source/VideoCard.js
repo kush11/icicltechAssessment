@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, Text,Image,TouchableOpacity } from 'react-native';
-
-const VideoCard = ({image,videoUrl, name}) =>{
+const VideoCard = ({image,videoUrl, name, navigation}) =>{
     return(
         <View style={{height:100,width:'90%', flexDirection:'row',}}>
             
@@ -14,8 +13,8 @@ const VideoCard = ({image,videoUrl, name}) =>{
                             height:100,width:'90%',
                             justifyContent:'center', 
                             alignItems:'center'
-                        }}
-                        onPress={()=>alert(videoUrl)}
+                        }}                       
+                        onPress={()=>navigation.navigate('VideoPlayerScreen',{url:videoUrl})}                        
                         >
                         <Image 
                         // resizeMode='cover'
