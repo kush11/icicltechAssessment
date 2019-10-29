@@ -7,6 +7,7 @@ class GlobalState extends Component {
         name:'',
         image:'',
         age:'',
+        email:'',
         hobbies:'',
         description:''
       };

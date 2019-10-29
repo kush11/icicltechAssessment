@@ -1,33 +1,47 @@
 import React from 'react';
-import {View, Text,Image,TouchableOpacity } from 'react-native';
-const VideoCard = ({image,videoUrl, name, navigation}) =>{
-    return(
-        <View style={{height:100,width:'90%', flexDirection:'row',}}>
-            
-                    <View style={{flex:1, 
-                    backgroundColor:'red', 
-                    borderRadius:20,
-                    justifyContent:'center', alignItems:'center'
-                    }}>
-                        <TouchableOpacity style={{
-                            height:100,width:'90%',
-                            justifyContent:'center', 
-                            alignItems:'center'
-                        }}                       
-                        onPress={()=>navigation.navigate('VideoPlayerScreen',{url:videoUrl})}                        
-                        >
-                        <Image 
+import { View, Text, Image, TouchableOpacity } from 'react-native';
+import Thumbnail from './YoutubeThumbnail'
+const VideoCard = ({ image, videoUrl, videoDescription, videoPlayLink, navigation }) => {
+    return (
+        <View style={{ flex:1, width: '90%', flexDirection: 'row', }}>
+
+            <View style={{
+                padding: 10,                
+                marginTop: 10,
+                elevation: 5,
+                borderWidth: 0.15,
+                backgroundColor: 'white',
+                borderRadius: 15,
+                borderColor: 'transparent',
+                shadowOffset: { width: 4, height: 4 },
+                shadowColor: '#90a4ae',
+                shadowOpacity: 5.0,
+
+                flex: 1,                                
+                // justifyContent: 'center',
+                // alignItems: 'center',
+            }}>
+                <TouchableOpacity style={{
+                    flex:1, width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}
+                    onPress={() => navigation.navigate('VideoPlayerScreen', { url: videoPlayLink })}
+                >
+                    <Image
                         // resizeMode='cover'
-                        source={{uri:image}} 
-                            style={{
-                                height:100,
-                                width:100,
-                                borderRadius:200,
-                            }}
-                    />
-                        </TouchableOpacity>
-                    </View>                   
-                </View>
+                        source={{ uri: Thumbnail(videoUrl) }}
+                        style={{
+                            borderWidth: 0.15,
+                            borderRadius: 15,
+                            height: '100%',
+                            width: "100%",                          
+                        }}
+                    />                   
+                </TouchableOpacity>
+                <Text>{videoDescription}</Text>
+            </View>
+        </View>
     )
 }
 export default VideoCard;

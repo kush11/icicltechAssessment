@@ -6,6 +6,7 @@ export default React.createContext({
     age: '',
     hobbies: '',
     description: '',
+    email:'',
     setUserName: name => {},
     setUserAge: age => {},
     setUserHobbies: hobbies => {},

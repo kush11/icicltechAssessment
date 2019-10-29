@@ -1,28 +1,27 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import Screen1 from '../source/TwitterAuth';
+import InitialScreen from '../source/TwitterAuth';
 import HomePage from '../source/HomePage';
 import VideoPlayer from '../source/VideoPlayer';
-// import Screen3 from '../Screen3';
 
 const Routes = createStackNavigator(
-    {        
+    {
         FrontPageScreen: {
-            screen: Screen1,
+            screen: InitialScreen,
             navigationOptions: {
                 gesturesEnabled: false,
                 header: null,
                 title: null
             }
-        },HomePageScreen: {
+        }, HomePageScreen: {
             screen: HomePage,
             navigationOptions: {
                 gesturesEnabled: false,
                 header: null,
                 title: null
             }
-        },VideoPlayerScreen: {
+        }, VideoPlayerScreen: {
             screen: VideoPlayer,
             navigationOptions: {
                 gesturesEnabled: false,
