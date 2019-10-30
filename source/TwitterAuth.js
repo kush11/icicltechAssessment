@@ -25,8 +25,8 @@ class TwitterAuth extends PureComponent {
       age: '',
       hobbies: '',
       email: '',
-      description: ''
-    };  
+      description: '',
+    };
   }
 
   saveData = (data) => {
@@ -48,19 +48,19 @@ class TwitterAuth extends PureComponent {
         console.log('error in storing', error);
       }
     }
-    this.setState({ image: data })
+    this.setState({ image: data , showModal:false})
   }
-  componentDidMount() {    
-    AsyncStorage.getItem('data').then((data) => {      
+  componentDidMount() {
+    AsyncStorage.getItem('data').then((data) => {
       if (data) {
         this.props.navigation.navigate('HomePageScreen');
       }
     })
   }
-  _twitterSignIn = () => {    
+  _twitterSignIn = () => {
     RNTwitterSignIn.init(Constants.TWITTER_COMSUMER_KEY, Constants.TWITTER_CONSUMER_SECRET)
     RNTwitterSignIn.logIn()
-      .then(loginData => {      
+      .then(loginData => {
         const { authToken, authTokenSecret, email } = loginData
         if (authToken && authTokenSecret) {
           this.setState({
@@ -139,7 +139,13 @@ class TwitterAuth extends PureComponent {
           >
             <Text style={{ fontSize: 20 }}> Login With Twitter</Text>
           </TouchableOpacity>
-          <Model email={this.state.email} open={this.state.showModal} navigation={this.props.navigation.navigate} submit={this.saveData} />
+          <Model
+            email={this.state.email}
+            open={this.state.showModal}
+            navigation={this.props.navigation.navigate}
+            submit={this.saveData}
+            buttonText={'Login'}
+          />
         </View>
       </CardConetxt.Provider>
     );

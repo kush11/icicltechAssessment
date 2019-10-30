@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import Thumbnail from './YoutubeThumbnail'
-const VideoCard = ({ image, videoUrl, videoDescription, videoPlayLink, navigation }) => {
+const VideoCard = ({  videoUrl, videoTitle, videoPlayLink, navigation }) => {
     return (
         <View style={{ flex:1, width: '90%', flexDirection: 'row', }}>
 
@@ -39,7 +39,7 @@ const VideoCard = ({ image, videoUrl, videoDescription, videoPlayLink, navigatio
                         }}
                     />                   
                 </TouchableOpacity>
-                <Text>{videoDescription}</Text>
+                <Text>{videoTitle}</Text>
             </View>
         </View>
     )

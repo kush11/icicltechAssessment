@@ -10,18 +10,18 @@ class VideoPlayerView extends Component {
         Orientation.lockToLandscape();
     }
     componentWillUnmount() {        
-        Orientation.unlockAllOrientations();
+        Orientation.lockToPortrait();
     }
 
     render() {
         const { navigation } = this.props;
-        const videoUrl = navigation.getParam('url');
+        const videoUrl = navigation.getParam('url');        
         return (
             <View style={{ flex: 1 }}>
                 <VideoPlayer
                     source={{ uri: videoUrl }}
                     navigator={this.props.navigator}
-                    onBack={() => null}
+                    onBack={() => this.props.navigation.navigate('HomePageScreen')}
                 />
                 {/* <WebView
                     style={{marginTop: 10}}

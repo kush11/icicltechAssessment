@@ -19,20 +19,25 @@ class Model extends Component {
       imageUrl: '',
     };
   }
-  submitData = () => {   
-    let userData = this.context;
-    userData.image = this.state.imageUrl;
-    { userData.name === this.state.name ? null : userData.name }    
-    for (var key in userData) {
-      if (userData[key] === "") {
-        alert('Must be filled ' + key);
-        return
+  submitData = (name) => {
+    if (name === 'Login') {
+      let userData = this.context;
+      userData.image = this.state.imageUrl;
+      { userData.name === this.state.name ? null : userData.name }
+      for (var key in userData) {
+        if (userData[key] === "") {
+          alert('Must be filled ' + key);
+          return
+        }
       }
+      this.props.submit(this.state.imageUrl);
+      this.props.navigation('HomePageScreen', {
+        userData: this.context
+      });
     }
-    this.props.submit(this.state.imageUrl);
-    this.props.navigation('HomePageScreen', {
-      userData: this.context
-    })
+    if (name === 'Logout') {
+      this.props.logoutFun();
+    }
   }
   cameraModel = (arg) => {
     arg === "Cancel" ? this.setState({ cameraModel: false }, () => Toast.show({
@@ -54,7 +59,7 @@ class Model extends Component {
         compressImageMaxHeight: 1000,
         includeExif: true,
         avoidEmptySpaceAroundImage: true,
-      }).then(image => {        
+      }).then(image => {
         this.setState({ cameraModel: false, imageUrl: image.path })
       });
     }
@@ -70,19 +75,20 @@ class Model extends Component {
         compressImageMaxHeight: 1000,
         includeExif: true,
         avoidEmptySpaceAroundImage: true,
-      }).then(image => {        
+      }).then(image => {
         this.setState({ cameraModel: false, imageUrl: image.path })
       });
     }
 
   }
   render() {
-    if (this.props.open) { this.refs.modal1.open(); }
+    // if (this.props.open) { this.refs.modal1.open(); }    
     return (
       <Modal
         style={{ height: '85%', width: '95%', borderRadius: 20, borderWidth: 1 }}
-        ref={"modal1"}
+        // ref={"modal1"}
         swipeToClose={false}
+        isOpen={this.props.open}
         // onClosed={this.onClose}
         onOpened={this.onOpen}
         onClosingState={this.onClosingState}>
@@ -99,7 +105,10 @@ class Model extends Component {
             }}
               onPress={() => this.setState({ cameraModel: true })}
             >
-              {this.state.imageUrl !== '' ? <Image source={{ uri: this.state.imageUrl }}
+              {this.state.imageUrl !== '' || this.props.imageSrc ? <Image
+                source={{
+                  uri: this.state.imageUrl === '' ? this.props.imageSrc : this.state.imageUrl
+                }}
                 style={{
                   height: 140,
                   width: 140,
@@ -109,11 +118,11 @@ class Model extends Component {
             </TouchableOpacity>
           </View>
           <View style={{ flex: 8 }}>
-            <TextInputs placeholder={'Name'} Title={'Name'} value={this.context.name} />
+            <TextInputs placeholder={'Name'} Title={'Name'} value={this.context.name ? this.context.name : this.props.name} />
             <TextInputs placeholder={'Email'} Title={'Email'} value={this.props.email} />
-            <TextInputs placeholder={'Enter your Age'} Title={'Age'} />
-            <TextInputs placeholder={'Enter your Hobby'} Title={'Hobbies'} />
-            <TextInputs placeholder={'Write your shord Description about you'} Title={'Description'} />
+            <TextInputs placeholder={'Enter your Age'} Title={'Age'} value={this.props.age} />
+            <TextInputs placeholder={'Enter your Hobby'} Title={'Hobbies'} value={this.props.hobbies} />
+            <TextInputs placeholder={'Write your shord Description about you'} Title={'Description'} value={this.props.description} />
           </View>
           <View style={{
             flex: 1,
@@ -128,9 +137,9 @@ class Model extends Component {
               backgroundColor: '#24a0ed',
               justifyContent: 'center', alignItems: 'center'
             }}
-              onPress={() => this.submitData()}
+              onPress={() => this.submitData(this.props.buttonText)}
             >
-              <Text>Login</Text>
+              <Text>{this.props.buttonText}</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
