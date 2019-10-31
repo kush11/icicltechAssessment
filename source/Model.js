@@ -17,6 +17,7 @@ class Model extends Component {
     this.state = {
       cameraModel: false,
       imageUrl: '',
+      closeModel: false
     };
   }
   submitData = (name) => {
@@ -85,13 +86,13 @@ class Model extends Component {
     // if (this.props.open) { this.refs.modal1.open(); }    
     return (
       <Modal
-        style={{ height: '85%', width: '95%', borderRadius: 20, borderWidth: 1 }}
+        style={{ height: screen.height/1.36, width: screen.width, borderRadius: 20, borderWidth: 1 }}
         // ref={"modal1"}
         swipeToClose={false}
         isOpen={this.props.open}
         // onClosed={this.onClose}
         onOpened={this.onOpen}
-        onClosingState={this.onClosingState}>
+        onClosingState={this.onClosingState}>        
         <Text style={styles.text}></Text>
         <ScrollView style={{ flex: 1 }}>
           <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>

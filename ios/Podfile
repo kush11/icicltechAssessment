@@ -36,6 +36,8 @@ target 'icicle_app_challence' do
 
   pod 'react-native-twitter-signin', :path => '../node_modules/react-native-twitter-signin'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'icicle_app_challenceTests' do
     inherit! :search_paths
     # Pods for testing

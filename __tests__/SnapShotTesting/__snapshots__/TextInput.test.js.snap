@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextInput snapshot  1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "row",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 2,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text>
+      :
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 7,
+      }
+    }
+  >
+    <TextInput
+      allowFontScaling={true}
+      keyboardType="default"
+      onChangeText={[Function]}
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "borderBottomColor": "gray",
+          "borderBottomWidth": 1,
+          "height": 40,
+          "margin": 5,
+        }
+      }
+      underlineColorAndroid="transparent"
+      value={null}
+    />
+  </View>
+</View>
+`;

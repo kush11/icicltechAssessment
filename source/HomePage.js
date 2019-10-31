@@ -5,28 +5,7 @@ import UserContext from '../context/card';
 import VideoCard from './VideoCard';
 import youtubedl from 'react-native-ytdl';
 import Model from './Model'
-let Data = [
-    {
-        id: '1',
-        videoUrl: 'https://youtu.be/jPBgGA4sVmQ',
-    },
-    {
-        id: '2',
-        videoUrl: 'https://youtu.be/b0Go-EZEc4M',
-    },
-    {
-        id: '3',
-        videoUrl: 'https://youtu.be/IWa8XnmKzA0',
-    },
-    {
-        id: '4',
-        videoUrl: 'https://youtu.be/KcBSDtfrdUI',
-    },
-    {
-        id: '5',
-        videoUrl: 'https://www.youtube.com/watch?v=o27GGC3RLac',
-    }
-]
+import Data from './YoutudeData.json'
 export default class HomePage extends PureComponent {
     constructor(props) {
         super(props)
@@ -39,7 +18,7 @@ export default class HomePage extends PureComponent {
 
     static contextType = UserContext;
 
-    componentDidMount() {
+    componentDidMount() {        
         let count = 0;
         Data.forEach((el, index, arr) => {
             youtubedl.getInfo(el.videoUrl, {}, (err, info) => {
@@ -132,7 +111,7 @@ export default class HomePage extends PureComponent {
         else {
             return (
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: "center" }}>
-                    <ActivityIndicator size="large" color="#00ff00" />                    
+                    <ActivityIndicator size="large" color="#00ff00" />
                 </View>
             )
         }
